@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'feature/shared/router/app_router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [],
+      child: const MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
