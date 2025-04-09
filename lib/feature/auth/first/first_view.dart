@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:turlgo/feature/shared/component/pressable_button.dart';
 
 class FirstView extends StatefulWidget{
   const FirstView({super.key});
@@ -56,39 +57,17 @@ class _FirstViewState extends State<FirstView> {
                   child:
                     Column(
                       children: [
-                        GestureDetector(
-                          onTap: ()  async {
-                            setState(() {
-                              _isPressed = true;
-                            });
-                            await Future.delayed(Duration(milliseconds: 80));
-                            setState(() {
-                              _isPressed = false;
-                            });
+                        PressableButton(
+                          onTap: () {
+                            print("hello");
                           },
-                          child:
-                          AnimatedScale(
-                            scale: _isPressed ? 0.95 : 1.0,
-                            duration: Duration(milliseconds: 80),
-                            child:
-                            Container(
-                              width: 280,
-                              height: 70,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFEF798A),
-                                borderRadius: BorderRadius.circular(50)
-                              ),
-                              alignment: Alignment.center,
-                              child:
-                                Text(
-                                    "회원가입",
-                                  style: TextStyle(
-                                    fontFamily: 'Pretendard',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20,
-                                    color: Color(0xFFFFFFFF)
-                                  ),
-                                )
+                          child: Text(
+                            "회원가입",
+                            style: TextStyle(
+                              fontFamily: 'Pretendard',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20,
+                              color: Color(0xFFFFFFFF)
                             ),
                           ),
                         ),
