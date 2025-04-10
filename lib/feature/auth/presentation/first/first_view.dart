@@ -14,7 +14,6 @@ class FirstView extends StatefulWidget{
 }
 
 class _FirstViewState extends State<FirstView> {
-  bool _isPressed = false;
 
   @override
   Widget build(BuildContext context) {
