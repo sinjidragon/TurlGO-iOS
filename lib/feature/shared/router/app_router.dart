@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:turlgo/feature/auth/first/first_view.dart';
+import '../../auth/presentation/first/first_view.dart';
 
 final router = GoRouter(
   initialLocation: '/first',
