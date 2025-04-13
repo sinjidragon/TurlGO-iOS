@@ -58,8 +58,8 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/images/logo.svg
-    - assets/images/first_cat.png
+    - assets/images/
+    - assets/icons/
 
   fonts:
     - family: Pretendard
