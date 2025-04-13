@@ -4,12 +4,7 @@ import 'package:provider/provider.dart';
 import 'feature/shared/router/app_router.dart';
 
 void main() {
-  runApp(
-    MultiProvider(
-      providers: [],
-      child: const MyApp(),
-    )
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
