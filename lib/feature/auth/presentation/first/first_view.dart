@@ -15,88 +15,87 @@ class FirstView extends StatefulWidget {
 }
 
 class _FirstViewState extends State<FirstView> {
+
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+    final double screenWidth = screenSize.width;
+    final double screenHeight = screenSize.height;
+
     return Scaffold(
-      body: SingleChildScrollView( // 화면 넘침을 방지하기 위해 ScrollView 추가
+      backgroundColor: Color(0xFFFFFFFF),
+      body: SingleChildScrollView(
         child: Container(
-          color: Color(0xFFFFFFFF),
-          alignment: Alignment.topCenter,
-          child: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 80, 0, 0),
-                  child: SvgPicture.asset(
-                    'assets/images/logo.svg',
-                    width: 166,
-                    height: 39,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
-                  child: Text(
-                    "새로운 가족을 만나는 장소",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Pretendard',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20), // 여백 추가
-                Image.asset(
-                  'assets/images/first_cat.png',
-                  width: 326,
-                  height: 326,
-                ),
-                SizedBox(height: 30), // 여백 추가
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 70),
+          alignment: Alignment.center,
+          child: SafeArea(child:
+          Column(
+            children: [
+              Padding(
+                  padding: EdgeInsets.only(top : 90),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      PressableButton(
-                        onTap: () {
-                          context.push('/signup');
-                        },
+                      SvgPicture.asset(
+                        'assets/images/logo.svg',
+                        width: 165,
+                        fit: BoxFit.contain,
+                      ),
+                      Padding(
+                          padding: EdgeInsets.only(top: 12),
                         child: Text(
-                          "회원가입",
+                            "새로운 가족을 만나는 장소",
                           style: TextStyle(
                             fontFamily: 'Pretendard',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 20,
-                            color: Color(0xFFFFFFFF),
+                            fontSize: 16,
+                            color: Color(0xFF5F5B5B),
+                            fontWeight: FontWeight.w500
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                        child: CupertinoButton(
-                          child: Text(
-                            "기존 계정으로 로그인",
-                            style: TextStyle(
-                              color: Color(0xFF000000),
-                              fontFamily: 'Pretendard',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                          onPressed: () {
-                            print("hello");
-                          },
+                          padding: EdgeInsets.fromLTRB(40, 50, 40, 80),
+                        child: Image.asset(
+                          'assets/images/first_cat.png',
+                          fit: BoxFit.contain,
                         ),
                       ),
+                      PressableButton(
+                          onTap: () {
+                            context.push('/signup');
+                          },
+                          child: Text(
+                            '회원가입',
+                            style: TextStyle(
+                              fontFamily: 'Pretendard',
+                              fontSize: 20,
+                              color: Color(0xFFFFFFFF),
+                              fontWeight: FontWeight.w500
+                            ),
+                          )
+                      ),
+                      CupertinoButton(
+                          onPressed: () {
+                              print("로그인 창으로 이동");
+                            },
+                          child: Text(
+                              "기존 계정으로 로그인",
+                            style: TextStyle(
+                                color: Color(0xFF5F5B5B),
+                              fontFamily: 'Pretendard',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              decoration: TextDecoration.underline,
+                            ),
+                          )
+                      )
                     ],
                   ),
-                ),
+                )
               ],
             ),
-          ),
+          )
         ),
-      ),
+      )
     );
   }
 }
