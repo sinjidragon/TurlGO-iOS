@@ -1,11 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:turlgo/feature/shared/component/pressable_button.dart';
-import 'package:turlgo/feature/shared/router/app_router.dart';
 
 class FirstView extends StatefulWidget {
   const FirstView({super.key});
@@ -18,9 +15,6 @@ class _FirstViewState extends State<FirstView> {
 
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
-    final double screenWidth = screenSize.width;
-    final double screenHeight = screenSize.height;
 
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
