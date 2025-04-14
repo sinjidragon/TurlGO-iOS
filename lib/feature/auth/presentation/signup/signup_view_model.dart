@@ -22,6 +22,9 @@ class SignupViewModel extends ChangeNotifier {
     idEditingController.addListener(() {
       clearErrorMessage();
     });
+    passwordEditingController.addListener(() {
+      clearErrorMessage();
+    });
   }
 
   void dispose() {

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:turlgo/feature/auth/presentation/signup/signup_view_model.dart';
@@ -148,11 +149,11 @@ class _SignupViewState extends State<SignupView> {
                       ),
                     ),
                     PressableButton(
-                        onTap: () {
+                        onTap: () async {
                           if (!vm.isLoading) {
-                            vm.checkUserName();
-                            if (vm.isFirstSuccess){
-                              print("회원가입2로이동");
+                            await vm.checkUserName();
+                            if (vm.isFirstSuccess) {
+                              context.push('/signup_email');
                             }
                           }
                         },
