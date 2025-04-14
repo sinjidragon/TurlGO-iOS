@@ -51,6 +51,7 @@ class _FirstViewState extends State<FirstView> {
                         child: Image.asset(
                           'assets/images/first_cat.png',
                           fit: BoxFit.contain,
+                          height: 300,
                         ),
                       ),
                       PressableButton(
@@ -71,7 +72,8 @@ class _FirstViewState extends State<FirstView> {
                           onPressed: () {
                               print("로그인 창으로 이동");
                             },
-                          child: Text(
+                          child:
+                          Text(
                               "기존 계정으로 로그인",
                             style: TextStyle(
                                 color: Color(0xFF5F5B5B),

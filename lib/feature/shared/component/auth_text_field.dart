@@ -15,6 +15,7 @@ class AuthTextField extends StatefulWidget {
   final String? hintText;
   final TextEditingController? controller;
   final VoidCallback? onTap;
+  final FocusNode? focusNode;
 
   const AuthTextField({
     super.key,
@@ -23,6 +24,7 @@ class AuthTextField extends StatefulWidget {
     this.hintText,
     this.controller,
     this.onTap,
+    this.focusNode
   });
 
   @override
@@ -47,8 +49,8 @@ class _AuthTextFieldState extends State<AuthTextField> {
               isShowPassword
                   ? 'assets/icons/open_eye.svg'
                   : 'assets/icons/close_eye.svg',
-              width: 24,
-              height: 24,
+              width: 20,
+              height: 20,
               fit: BoxFit.contain,
               colorFilter: ColorFilter.mode(
                 Color(0xFFA7A7A7),
@@ -87,6 +89,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      focusNode: widget.focusNode,
       controller: widget.controller,
       obscureText: widget.type == AuthTextFieldType.password && !isShowPassword,
       style: TextStyle(
@@ -117,6 +120,10 @@ class _AuthTextFieldState extends State<AuthTextField> {
             minWidth: 20,
             minHeight: 20,
           ),
+          suffixIconConstraints: BoxConstraints(
+            minWidth: 20,
+            minHeight: 20,
+          ),
           suffixIcon: _buildSuffixIcon(),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(15.0)),
@@ -132,7 +139,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
           )
       ),
       cursorColor: Color(0xFFA7A7A7),
-      cursorWidth: 1.0,
+      cursorWidth: 2.0,
       cursorHeight: 14.0,
     );
   }
