@@ -96,6 +96,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
         color: Color(0xFF595959)
       ),
       decoration: InputDecoration(
+          isDense: true,
           hintText: widget.hintText,
           hintStyle: TextStyle(
               fontFamily: 'Pretendard',
@@ -107,10 +108,14 @@ class _AuthTextFieldState extends State<AuthTextField> {
             padding: EdgeInsets.all(12.0),
             child: SvgPicture.asset(
               widget.prefixIconPath,
-              width: 24,
-              height: 24,
+              width: 20,
+              height: 20,
               fit: BoxFit.contain,
             ),
+          ),
+          prefixIconConstraints: BoxConstraints(
+            minWidth: 20,
+            minHeight: 20,
           ),
           suffixIcon: _buildSuffixIcon(),
           enabledBorder: OutlineInputBorder(
@@ -126,6 +131,9 @@ class _AuthTextFieldState extends State<AuthTextField> {
               )
           )
       ),
+      cursorColor: Color(0xFFA7A7A7),
+      cursorWidth: 1.0,
+      cursorHeight: 14.0,
     );
   }
 }
