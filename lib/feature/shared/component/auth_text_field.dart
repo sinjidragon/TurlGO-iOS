@@ -6,7 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 enum AuthTextFieldType {
   normal,
   password,
-  email
+  email,
+  custom
 }
 
 class AuthTextField extends StatefulWidget {
@@ -16,6 +17,7 @@ class AuthTextField extends StatefulWidget {
   final TextEditingController? controller;
   final VoidCallback? onTap;
   final FocusNode? focusNode;
+  final Widget? customSuffixIcon;
 
   const AuthTextField({
     super.key,
@@ -24,7 +26,8 @@ class AuthTextField extends StatefulWidget {
     this.hintText,
     this.controller,
     this.onTap,
-    this.focusNode
+    this.focusNode,
+    this.customSuffixIcon
   });
 
   @override
@@ -65,7 +68,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
           padding: EdgeInsets.fromLTRB(0, 14, 12, 14),
             child:
               SizedBox(
-                height: 20,
+                height: 15,
                 child: CupertinoButton(
                   padding: EdgeInsets.zero,
                     onPressed: widget.onTap,
@@ -81,6 +84,9 @@ class _AuthTextFieldState extends State<AuthTextField> {
                 ),
               )
         );
+      case AuthTextFieldType.custom:
+        return widget.customSuffixIcon;
+
       case AuthTextFieldType.normal:
         return null;
     }
