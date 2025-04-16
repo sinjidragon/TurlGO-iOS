@@ -25,32 +25,23 @@ class PressableButton extends StatefulWidget {
 class _PressableButtonState extends State<PressableButton> {
   bool _isPressed = false;
 
-  void _handleTap() {
-    widget.onTap();
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _handleTap,
-      onTapDown: (_) {
-        setState(() {
-          _isPressed = true;
+      onTap: () {
+        setState(() => _isPressed = true);
+        Future.delayed(const Duration(milliseconds: 100), () {
+          setState(() => _isPressed = false);
+          widget.onTap();
         });
       },
-      onTapUp: (_) {
-        setState(() {
-          _isPressed = false;
-        });
-      },
-      onTapCancel: () {
-        setState(() {
-          _isPressed = false;
-        });
-      },
+      onTapDown: (_) => setState(() => _isPressed = true),
+      onTapUp: (_) => setState(() => _isPressed = false),
+      onTapCancel: () => setState(() => _isPressed = false),
       child: AnimatedScale(
         scale: _isPressed ? 0.95 : 1.0,
-        duration: const Duration(milliseconds: 80),
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.easeInOut,
         child: Container(
           width: widget.width,
           height: widget.height,
