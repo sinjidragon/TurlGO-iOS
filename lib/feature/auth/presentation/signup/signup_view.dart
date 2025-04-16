@@ -7,6 +7,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:turlgo/feature/auth/presentation/signup/signup_view_model.dart';
 import 'package:turlgo/feature/shared/component/auth_back_button.dart';
 import 'package:turlgo/feature/shared/component/auth_text_field.dart';
+import 'package:turlgo/feature/shared/component/keyboard_dismiss_wrapper.dart';
 import 'package:turlgo/feature/shared/component/pressable_button.dart';
 
 class SignupView extends StatefulWidget{
@@ -23,11 +24,7 @@ class _SignupViewState extends State<SignupView> {
     final vm = context.watch<SignupViewModel>();
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
-      body: Listener(
-        behavior: HitTestBehavior.translucent,
-        onPointerDown: (_) {
-          FocusScope.of(context).unfocus();
-        },
+      body: KeyboardDismissWrapper(
         child: SingleChildScrollView(
           child: Container(
             alignment: Alignment.center,
@@ -83,11 +80,14 @@ class _SignupViewState extends State<SignupView> {
                                 ),
                               ),
                               SizedBox(height: 4),
-                              AuthTextField(
-                                type: AuthTextFieldType.normal,
-                                prefixIconPath: 'assets/icons/my.svg',
-                                controller: vm.idEditingController,
-                                hintText: '아이디를 입력해주세요',
+                              IgnorePointer(
+                                ignoring: false,
+                                child: AuthTextField(
+                                  type: AuthTextFieldType.normal,
+                                  prefixIconPath: 'assets/icons/my.svg',
+                                  controller: vm.idEditingController,
+                                  hintText: '아이디를 입력해주세요',
+                                ),
                               ),
                               Align(
                                 alignment: Alignment.centerLeft,
@@ -149,12 +149,14 @@ class _SignupViewState extends State<SignupView> {
                       ),
                     ),
                     PressableButton(
-                        onTap: () async {
+                        onTap: () {
                           if (!vm.isLoading) {
-                            await vm.checkUserName();
-                            if (vm.isFirstSuccess) {
-                              context.push('/signup_email');
-                            }
+                            Future.microtask(() async {
+                              await vm.checkUserName();
+                              if (vm.isFirstSuccess) {
+                                context.push('/signup_email');
+                              }
+                            });
                           }
                         },
                         child: vm.isLoading ?
