@@ -70,7 +70,7 @@ class _FirstViewState extends State<FirstView> {
                       ),
                       CupertinoButton(
                           onPressed: () {
-                              print("로그인 창으로 이동");
+                              context.push('/login');
                             },
                           child:
                           Text(

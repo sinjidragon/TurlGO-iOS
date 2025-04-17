@@ -198,7 +198,7 @@ class _SignupViewState extends State<SignupView> {
                     ),
                     CupertinoButton(
                         onPressed: () {
-                          print("회원가입2로 이동");
+                          context.push('/login');
                         },
                         child: Text(
                           "기존 계정으로 로그인",

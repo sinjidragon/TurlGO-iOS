@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -243,7 +244,7 @@ class _SignupEmailViewState extends State<SignupEmailView> {
                     ),
                     CupertinoButton(
                         onPressed: () {
-                          print("회원가입2로 이동");
+                          context.push('/login');
                         },
                         child: Text(
                           "기존 계정으로 로그인",
