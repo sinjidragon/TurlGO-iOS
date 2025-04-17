@@ -154,7 +154,10 @@ class _SignupViewState extends State<SignupView> {
                             Future.microtask(() async {
                               await vm.checkUserName();
                               if (vm.isFirstSuccess) {
-                                context.push('/signup_email');
+                                context.push('/signup_email',extra: {
+                                  'id': vm.idEditingController.text,
+                                  'password': vm.passwordEditingController.text,
+                                });
                               }
                             });
                           }

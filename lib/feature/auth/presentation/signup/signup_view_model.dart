@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -7,15 +8,14 @@ import 'package:http/http.dart' as http;
 class SignupViewModel extends ChangeNotifier {
   final TextEditingController idEditingController = TextEditingController();
   final TextEditingController passwordEditingController = TextEditingController();
-  final TextEditingController emailEditingController = TextEditingController();
 
 
   bool _isLoading = false;
-  bool _isFirstSuccess = false;
+  bool _isSuccess = false;
   String _errorMessage = '';
 
   bool get isLoading => _isLoading;
-  bool get isFirstSuccess => _isFirstSuccess;
+  bool get isFirstSuccess => _isSuccess;
   String get errorMessage => _errorMessage;
 
   SignupViewModel() {
@@ -27,6 +27,9 @@ class SignupViewModel extends ChangeNotifier {
     });
   }
 
+
+
+  @override
   void dispose() {
     idEditingController.dispose();
     passwordEditingController.dispose();
@@ -76,7 +79,7 @@ class SignupViewModel extends ChangeNotifier {
 
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        _isFirstSuccess = true;
+        _isSuccess = true;
         notifyListeners();
       } else {
         final responseData = jsonDecode(utf8.decode(response.bodyBytes));
@@ -89,13 +92,6 @@ class SignupViewModel extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-
-  void testError(){
-    _errorMessage = "안녕하세요";
-    notifyListeners();
-  }
-
   void clearErrorMessage(){
     _errorMessage = "";
     notifyListeners();
