@@ -155,7 +155,7 @@ class _SignupViewState extends State<LoginView> {
                             Future.microtask(() async {
                               await vm.login();
                               if (vm.isSuccess) {
-                                print("로그인 성공");
+                                context.go('/home');
                               }
                             });
                           }
