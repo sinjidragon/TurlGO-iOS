@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class PressableButton extends StatefulWidget {
   final VoidCallback onTap;
   final Widget child;
-  final double width;
+  final double? width;
   final double height;
   final Color color;
   final BorderRadius borderRadius;
@@ -12,7 +12,7 @@ class PressableButton extends StatefulWidget {
     super.key,
     required this.onTap,
     required this.child,
-    this.width = 280,
+    this.width,
     this.height = 70,
     this.color = const Color(0xFFEF798A),
     this.borderRadius = const BorderRadius.all(Radius.circular(50)),

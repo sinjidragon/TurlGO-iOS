@@ -55,6 +55,7 @@ class _FirstViewState extends State<FirstView> {
                         ),
                       ),
                       PressableButton(
+                        width: 280,
                           onTap: () {
                             context.push('/signup');
                           },
