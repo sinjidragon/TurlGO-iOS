@@ -47,7 +47,6 @@ Future<bool> refresh() async {
   }
   catch (e) {
     showToast('서버 오류: ${e.toString()}');
-  } finally {
     return false;
   }
 }
