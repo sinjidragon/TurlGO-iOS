@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:turlgo/feature/shared/component/pressable_button.dart';
+import 'package:turlgo/feature/shared/util/refresh.dart';
 
 class FirstView extends StatefulWidget {
   const FirstView({super.key});
@@ -12,6 +14,20 @@ class FirstView extends StatefulWidget {
 }
 
 class _FirstViewState extends State<FirstView> {
+  @override
+  void initState() {
+    super.initState();
+    _checkRefresh();
+  }
+
+  void _checkRefresh() async {
+    bool isRefreshed = await refresh();
+    if (isRefreshed) {
+      if (mounted) {
+        context.go('/home');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
