@@ -52,8 +52,8 @@ class LoginViewModel extends ChangeNotifier {
       if (response.statusCode == 200 || response.statusCode == 201) {
         final responseData = jsonDecode(utf8.decode(response.bodyBytes));
 
-        final accessToken = responseData['accessToken'];
-        final refreshToken = responseData['refreshToken'];
+        final accessToken = responseData['data']['accessToken'];
+        final refreshToken = responseData['data']['refreshToken'];
 
         if (accessToken != null) {
           await _secureStorage.write(key: 'access_token', value: accessToken);
@@ -61,7 +61,6 @@ class LoginViewModel extends ChangeNotifier {
         if (refreshToken != null) {
           await _secureStorage.write(key: 'refresh_token', value: refreshToken);
         }
-        _isSuccess = true;
         _isSuccess = true;
         notifyListeners();
       } else {
