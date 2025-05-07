@@ -149,6 +149,7 @@ class _SignupViewState extends State<SignupView> {
                       ),
                     ),
                     PressableButton(
+                        width: 280,
                         onTap: () {
                           if (!vm.isLoading) {
                             Future.microtask(() async {
