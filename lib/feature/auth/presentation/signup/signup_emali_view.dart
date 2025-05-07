@@ -195,6 +195,7 @@ class _SignupEmailViewState extends State<SignupEmailView> {
                       ),
                     ),
                     PressableButton(
+                        width: 280,
                         onTap: () {
                           if (!vm.isLoading) {
                             Future.microtask(() async {
