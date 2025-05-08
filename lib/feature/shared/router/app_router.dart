@@ -8,10 +8,16 @@ import 'package:turlgo/feature/auth/presentation/signup/signup_view.dart';
 import '../../auth/presentation/first/first_view.dart';
 import '../../main/presentation/adoption/adoption_view.dart';
 import '../../main/presentation/education/education_view.dart';
+import '../../main/presentation/education/video/video_view.dart';
 import '../../main/presentation/home/home_view.dart';
 import '../../main/presentation/my/my_view.dart';
+import '../../model/video.dart';
+
+final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
+    navigatorKey: _rootNavigatorKey,
   initialLocation: '/first',
     routes: [
       GoRoute(path: "/first",builder: (context, state) => FirstView()),
@@ -29,6 +35,7 @@ final router = GoRouter(
       ),
       GoRoute(path: "/login",builder: (context, state) => LoginView()),
       ShellRoute(
+          navigatorKey: _shellNavigatorKey,
           builder: (context, state, child) {
             return MainScaffold(child: child);
           },
@@ -50,7 +57,15 @@ final router = GoRouter(
             builder: (context, state) => const MyView(),
           ),
         ]
-      )
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/video',
+        builder: (context, state) {
+          final video = state.extra as Video;
+          return VideoView(video: video);
+        },
+      ),
     ]
 );
 

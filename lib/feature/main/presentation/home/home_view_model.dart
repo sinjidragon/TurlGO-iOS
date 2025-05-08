@@ -5,12 +5,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:turlgo/feature/model/video.dart';
+import 'package:turlgo/feature/shared/data/education_videos.dart';
+import 'package:turlgo/feature/shared/util/refresh.dart';
 
 import '../../../model/animal.dart';
 import '../../../shared/util/show_toast.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  late List<Animal> animals;
+  List<Animal> animals = [];
+  List<Video> videos = educationVideos;
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
   bool _isLoading = false;
@@ -47,7 +51,17 @@ class HomeViewModel extends ChangeNotifier {
         final responseData = jsonDecode(utf8.decode(response.bodyBytes));
         animals = (responseData['data'] as List).map((item) => Animal.fromJson(item)).toList();
         _isSuccess = true;
-      } else {
+      }
+      else if (response.statusCode == 401) {
+        final Future<bool> isRefresh = refresh();
+        if (await isRefresh) {
+          getAnimalList();
+        }
+        else {
+          showToast('다시 로그인 해주세요.');
+        }
+      }
+      else {
         final responseData = jsonDecode(utf8.decode(response.bodyBytes));
         showToast(responseData['message'] ?? "불러오기에 실패했습니다.");
       }
