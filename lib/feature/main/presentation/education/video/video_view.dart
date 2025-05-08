@@ -62,7 +62,11 @@ class _VideoViewState extends State<VideoView> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 widget.video.description,
-                style: const TextStyle(fontSize: 16),
+                style: const TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Pretendard',
+                    fontWeight: FontWeight.w400
+                ),
               ),
             ),
           ],
