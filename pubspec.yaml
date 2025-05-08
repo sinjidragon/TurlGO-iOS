@@ -19,6 +19,8 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   cupertino_icons: ^1.0.8
   fluttertoast: ^8.2.12
+  youtube_player_flutter: ^9.1.1
+  webview_flutter: ^4.11.0
 
 dev_dependencies:
   flutter_test:
