@@ -35,43 +35,48 @@ class _VideoViewState extends State<VideoView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-            widget.video.title,
-          style: TextStyle(
-            fontSize: 20,
-            fontFamily: 'Pretendard',
-            fontWeight: FontWeight.w500
-          ),
-        ),
+    return YoutubePlayerBuilder(
+      player: YoutubePlayer(
+        controller: _controller,
+        showVideoProgressIndicator: true,
       ),
-      body: Container(
-        color: Colors.white,
-        child:
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            YoutubePlayer(
-              controller: _controller,
-              showVideoProgressIndicator: true,
-            ),
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                widget.video.description,
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'Pretendard',
-                    fontWeight: FontWeight.w400
-                ),
+      builder: (context, player) {
+        return Scaffold(
+          appBar: _controller.value.isFullScreen
+              ? null // 전체화면일 때 AppBar를 숨김
+              : AppBar(
+            backgroundColor: Colors.white,
+            title: Text(
+              widget.video.title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontFamily: 'Pretendard',
+                fontWeight: FontWeight.w600,
               ),
             ),
-          ],
-        ),
-      )
+          ),
+          body: Container(
+            color: Colors.white,
+            child: ListView(
+              children: [
+                player, // YoutubePlayer 위젯
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    widget.video.description,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontFamily: 'Pretendard',
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
