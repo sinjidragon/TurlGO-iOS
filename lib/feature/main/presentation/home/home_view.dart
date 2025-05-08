@@ -182,7 +182,7 @@ class _HomeViewState extends State<HomeView> {
                                 borderRadius: BorderRadius.all(Radius.circular(10)),
                                 color: Colors.white,
                                 onTap: () {
-                                  print(item.name);
+                                  context.push('/detail', extra: item.animalNo);
                                 },
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,

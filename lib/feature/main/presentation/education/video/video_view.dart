@@ -43,8 +43,9 @@ class _VideoViewState extends State<VideoView> {
       builder: (context, player) {
         return Scaffold(
           appBar: _controller.value.isFullScreen
-              ? null // 전체화면일 때 AppBar를 숨김
+              ? null
               : AppBar(
+            scrolledUnderElevation: 0,
             backgroundColor: Colors.white,
             title: Text(
               widget.video.title,

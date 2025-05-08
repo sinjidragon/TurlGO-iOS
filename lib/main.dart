@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
+import 'package:turlgo/feature/main/presentation/adoption/detail/detail_view_model.dart';
 import 'package:turlgo/feature/main/presentation/home/home_view_model.dart';
 import 'feature/auth/presentation/login/login_view_model.dart';
 import 'feature/auth/presentation/signup/signup_email_view_model.dart';
@@ -15,7 +16,8 @@ void main() async{
           ChangeNotifierProvider(create: (_) => SignupViewModel()),
           ChangeNotifierProvider(create: (_) => SignupEmailViewModel()),
           ChangeNotifierProvider(create: (_) => LoginViewModel()),
-          ChangeNotifierProvider(create: (_) => HomeViewModel())
+          ChangeNotifierProvider(create: (_) => HomeViewModel()),
+          ChangeNotifierProvider(create: (_) => DetailViewModel())
         ],
         child: const MyApp(),
       )

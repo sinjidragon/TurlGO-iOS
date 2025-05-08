@@ -7,6 +7,7 @@ import 'package:turlgo/feature/auth/presentation/signup/signup_emali_view.dart';
 import 'package:turlgo/feature/auth/presentation/signup/signup_view.dart';
 import '../../auth/presentation/first/first_view.dart';
 import '../../main/presentation/adoption/adoption_view.dart';
+import '../../main/presentation/adoption/detail/detail_view.dart';
 import '../../main/presentation/education/education_view.dart';
 import '../../main/presentation/education/video/video_view.dart';
 import '../../main/presentation/home/home_view.dart';
@@ -66,6 +67,14 @@ final router = GoRouter(
           return VideoView(video: video);
         },
       ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/detail',
+        builder: (context, state) {
+          final animalNo = state.extra as String;
+          return DetailView(animalNo: animalNo);
+        },
+      )
     ]
 );
 
