@@ -50,7 +50,7 @@ class _HomeViewState extends State<HomeView> {
                     Padding(
                         padding: EdgeInsets.fromLTRB(20, 13, 20, 0),
                       child: PressableButton(
-                        onTap: (){print("object");},
+                        onTap: (){context.push('/test');},
                         height: 140,
                         color: Color(0xFFFEF2C5),
                         borderRadius: BorderRadius.circular(16),

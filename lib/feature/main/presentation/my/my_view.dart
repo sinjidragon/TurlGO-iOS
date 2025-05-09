@@ -10,8 +10,17 @@ class MyView extends StatefulWidget {
 class _MyViewState extends State<MyView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(child: Text("my_view")),
+    return Container(
+      color: Color(0xFFF9FAFB),
+      child: SafeArea(
+          child:
+          ListView(
+            children: [
+              SizedBox(height: 30,),
+
+            ],
+        )
+      ),
     );
   }
 }

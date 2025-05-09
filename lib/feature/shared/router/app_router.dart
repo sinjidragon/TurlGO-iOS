@@ -5,6 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:turlgo/feature/auth/presentation/login/login_view.dart';
 import 'package:turlgo/feature/auth/presentation/signup/signup_emali_view.dart';
 import 'package:turlgo/feature/auth/presentation/signup/signup_view.dart';
+import 'package:turlgo/feature/main/presentation/home/test/result/test_result_view.dart';
+import 'package:turlgo/feature/main/presentation/home/test/test_view.dart';
+import 'package:turlgo/feature/model/animal_preference.dart';
 import '../../auth/presentation/first/first_view.dart';
 import '../../main/presentation/adoption/adoption_view.dart';
 import '../../main/presentation/adoption/detail/detail_view.dart';
@@ -73,6 +76,19 @@ final router = GoRouter(
         builder: (context, state) {
           final animalNo = state.extra as String;
           return DetailView(animalNo: animalNo);
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/test',
+        builder: (context, state) => TestView()
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/test_result',
+        builder: (context, state) {
+          final animalPref = state.extra as AnimalPreference;
+          return TestResultView(animalPref: animalPref);
         },
       )
     ]
